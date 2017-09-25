@@ -4,11 +4,35 @@ import studentCoursesBackup.myTree.Node;
 
 public class TreeBuilder{
 
-	public insertNode(int newKey, String newName){
+	private Node root;
+	public void insertNode(int newKey, String newName){
 		Node newNode = new Node(newKey, newName);
+
+		if(root == null){
+			root = newNode;
+		}else{
+			Node currentNode = root;
+			Node parentNode;
+			while(true){
+				parentNode = currentNode;
+				if(newKey < currentNode.getKey()){
+					currentNode = currentNode.getLeftChild();
+					if(currentNode == null){
+						parentNode.setLeftChild(newNode); 
+						return;
+					}
+				}else{
+					currentNode = currentNode.getRightChild();
+					if(currentNode == null){
+						parentNode.setRightChild(newNode); 
+						return;
+					}
+				}
+			}
+		}
 	}
 
-	public deleteNode(int deleteKey){
+	public void deleteNode(int deleteKey){
 		
 	}
 

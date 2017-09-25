@@ -12,10 +12,37 @@ public class Node{
 	private Node leftChild;
 	private Node rightChild;
 
+	private Node(){
+	}
+
 	public Node(int keyIn, String nameIn){
 		key = keyIn;
 		name  = nameIn;
 		leftChild = new Node();
 		rightChild = new Node();
+	}
+
+	public int getKey(){
+		return key;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public Node getLeftChild(){
+		return leftChild;
+	}
+
+	public Node getRightChild(){
+		return rightChild;
+	}
+
+	public void setLeftChild(Node nodeIn){
+		leftChild = nodeIn;
+	}
+
+	public void setRightChild(Node nodeIn){
+		rightChild = nodeIn;
 	}
 }
