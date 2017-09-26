@@ -14,11 +14,19 @@ public class Driver
 {
 	public static void main(String[] args) 
 	{
+		// Object declared for TreeBuilder class.
+	    TreeBuilder treeBuilder;
+	    // Object declared for Results class.
+	    Results results;
+	    // Object declared for FileProcessor class.
+	    FileProcessor file;
+	    // Object declared for PrintWriter class.
+	    PrintWriter writer;
 
 	    try{
 	    	// command line validation for input file and output file respectively.
 	    	String inputFile = "", deleteFile = "", output1File = "", output2File = "", output3File = "";
-		    if(2 == args.length){// validates given arguments array length to 2.
+		    if(5 == args.length){// validates given arguments array length to 2.
 		    	if(!args[0].equals("${arg0}")){// validates 1st input file argument value.
 		    		inputFile = args[0];
 		    	}
@@ -57,6 +65,22 @@ public class Driver
 		    else{
 		    	throw new Exception("Please pass exactly 5 arguments one for input and another for output files.");
 		    }
+
+		    treeBuilder = new TreeBuilder();
+
+		    treeBuilder.insertNode(1234, "A");
+		    treeBuilder.insertNode(1200, "A");
+		    treeBuilder.insertNode(1250, "A");
+		    treeBuilder.insertNode(1277, "A");
+		    treeBuilder.insertNode(1212, "A");
+
+			System.out.println("in order");
+		    treeBuilder.inOrderTraverseTree();
+		    System.out.println("pre order");
+		    treeBuilder.preOrderTraverseTree();
+		    System.out.println("post order");
+		    treeBuilder.postOrderTraverseTree();
+
 	    }
 	    catch(Exception ex){
 	    	System.err.println(ex.getMessage());// prints the error message.
