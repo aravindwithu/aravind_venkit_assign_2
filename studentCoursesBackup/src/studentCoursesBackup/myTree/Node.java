@@ -38,6 +38,10 @@ public class Node{
 		return rightChild;
 	}
 
+	public void clearName(){
+		name = "";
+	}
+
 	public void setLeftChild(Node nodeIn){
 		leftChild = nodeIn;
 	}

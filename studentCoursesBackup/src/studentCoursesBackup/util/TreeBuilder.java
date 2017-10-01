@@ -97,6 +97,6 @@ public class TreeBuilder{
 				return null;
 			}
 		}
-		return currentNode
+		return currentNode;
 	}
 }

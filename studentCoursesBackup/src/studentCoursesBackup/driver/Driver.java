@@ -66,13 +66,34 @@ public class Driver
 		    	throw new Exception("Please pass exactly 5 arguments one for input and another for output files.");
 		    }
 
-		    treeBuilder = new TreeBuilder();
-
+		    /*
+			treeBuilder = new TreeBuilder();
 		    treeBuilder.insertNode(1234, "A");
 		    treeBuilder.insertNode(1200, "A");
 		    treeBuilder.insertNode(1250, "A");
 		    treeBuilder.insertNode(1277, "A");
-		    treeBuilder.insertNode(1212, "A");
+		    treeBuilder.insertNode(1212, "A");*/
+
+		    // Object intialized for FileProcessor with respective input file.
+			file = new FileProcessor(inputFile);
+			treeBuilder = new TreeBuilder();
+			// The input values are read from file and stored in my array list.
+			String line;
+		    while ((line = file.readLine(true)) != null)
+		    {
+		    	String[] lineValues = line.split(":");
+		    	int keyValue = 0;
+		    	try{
+		    		keyValue =  Integer.parseInt(lineValues[0]);
+		    	}
+		    	catch(Exception ex){// To catch the in parse invalid error.
+		    		throw new Exception("Invalid value: "+ line +", Please provide numbers in the range 0-10000.");
+		    	}
+
+		    	String nameValue = lineValues[1];
+		    	treeBuilder.insertNode(keyValue, nameValue);
+		    }
+		    file.readLine(false);
 
 			System.out.println("in order");
 		    treeBuilder.inOrderTraverseTree();

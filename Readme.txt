@@ -11,12 +11,12 @@ ant -buildfile src/build.xml all
 -----------------------------------------------------------------------
 ## To run by specifying arguments from command line 
 ## We will use this to run your code
-ant -buildfile src/build.xml run -Darg0=FIRST -Darg1=SECOND
+ant -buildfile src/build.xml run -Darg0=input.txt -Darg1=delete.txt -Darg2=output1.txt -Darg3=output2.txt -Darg4=output3.txt
 
 -----------------------------------------------------------------------
 
 ## To create tarball for submission
-ant -buildfile src/build.xml tarzip or tar -zcvf aravind_venkit_assign_2.tar.gz aravind_venkit_assign_2
+ant -buildfile src/build.xml tarzip or tar -zcvf aravindhan_venkituswamymaimagalai_assign_2.tar.gz aravindhan_venkituswamymaimagalai_assign_2
 
 -----------------------------------------------------------------------
 
