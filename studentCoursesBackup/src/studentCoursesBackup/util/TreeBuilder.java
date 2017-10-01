@@ -38,10 +38,6 @@ public class TreeBuilder{
 		}
 	}
 
-	public void deleteNode(int deleteKey){
-		
-	}
-
 	public void inOrderTraverseTree(){
 		inOrderTraverseTree(root);
 	}
@@ -100,7 +96,7 @@ public class TreeBuilder{
 		return currentNode;
 	}
 
-		public boolean deleteNode(int key){
+	public boolean deleteNode(int key){
 		Node currentNode = root;
 		while(currentNode.getKey() != key){
 			if(key < currentNode.getKey()){
