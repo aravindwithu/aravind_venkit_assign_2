@@ -99,4 +99,25 @@ public class TreeBuilder{
 		}
 		return currentNode;
 	}
+
+		public boolean deleteNode(int key){
+		Node currentNode = root;
+		while(currentNode.getKey() != key){
+			if(key < currentNode.getKey()){
+				currentNode = currentNode.getLeftChild();
+			}else{
+				currentNode = currentNode.getRightChild();
+			}
+
+			if(currentNode == null){
+				return false;
+			}
+		}
+		if(currentNode != null){
+			currentNode.clearName();
+			return true;
+		}else{
+			return false;
+		}	
+	}
 }
