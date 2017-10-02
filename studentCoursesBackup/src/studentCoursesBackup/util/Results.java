@@ -2,6 +2,7 @@ package studentCoursesBackup.util;
 
 //Header to import supporting classes.
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /*
 * Results class.
@@ -10,7 +11,7 @@ import java.io.PrintWriter;
 * Implements FileDisplayInterface and StdoutDisplayInterface interfaces.
 */
 public class Results implements FileDisplayInterface, StdoutDisplayInterface{
-	private String[] resultArray = new String[12];// string array to store results.
+	private ArrayList<String> resultArray = new ArrayList<String>();// string array to store results.
 	private PrintWriter writer;// writer object to write to file.
 	/*
 	* Results constructor to intialize Results class.
@@ -24,8 +25,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 	* intializes resultArray with empty string.
 	*/
 	private void intializeArray(){
-		for(int i=0; i < resultArray.length; i++){
-			resultArray[i] = "";
+		for(int i=0; i < resultArray.size(); i++){
+			resultArray.set(i, "");
 		}
 	}
 	/*
@@ -33,16 +34,16 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 	* Requires 2 arguments 1 -> index, 2 -> value.
 	* Stores the given value in given index.
 	*/
-	public void storeNewResult(int index, String value){
-		resultArray[index] = value;
+	public void storeNewResult(String value){
+		resultArray.add(value);
 	}
 	/*
 	* printAll method.
 	* prints all the values in resultArray to command line.
 	*/
 	public void printAll(){
-		for(int i = 0; i < resultArray.length; i++){
-			writeToStdout(resultArray[i]);
+		for(int i = 0; i < resultArray.size(); i++){
+			writeToStdout(resultArray.get(i));
 		}
 	}
 	/*
@@ -51,8 +52,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 	*/
 	public void writeAll(PrintWriter writer_in){
 		writer = writer_in;
-		for(int i = 0; i < resultArray.length; i++){
-			writeToFile(resultArray[i]);
+		for(int i = 0; i < resultArray.size(); i++){
+			writeToFile(resultArray.get(i));
 		}
 	}
 	/*

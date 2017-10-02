@@ -2,6 +2,7 @@
 package studentCoursesBackup.util;
 
 import studentCoursesBackup.myTree.Node;
+import studentCoursesBackup.util.Results;
 
 public class TreeBuilder{
 
@@ -46,22 +47,24 @@ public class TreeBuilder{
         return root;
 	}
 
-	public void printNodes(){
+	public void printNodes(Results results_orig, Results backup_Results_1, Results backup_Results_2){
 		System.out.println("orig");
-		inOrderTraverseTree(root_orig);
+		printNodes(root_orig, results_orig);
 		System.out.println("backup1");
-		inOrderTraverseTree(backup_Root_1);
+		printNodes(backup_Root_1, backup_Results_1);
 		System.out.println("backup2");
-		inOrderTraverseTree(backup_Root_2);
+		printNodes(backup_Root_2, backup_Results_2);
 	}
 
-	private void printNodes(Node currentNode){
+	private void printNodes(Node currentNode, Results result){
 		if(currentNode != null){
-			inOrderTraverseTree(currentNode.getLeftChild());
+			printNodes(currentNode.getLeftChild(), result);
 			if(0 != currentNode.getKey() && "" != currentNode.getName()){
 				System.out.println(currentNode.getKey());
+				String resultStr = currentNode.getKey() + ":" + currentNode.getName();
+				result.storeNewResult(resultStr);
 			}			
-			inOrderTraverseTree(currentNode.getRightChild());
+			printNodes(currentNode.getRightChild(), result);
 		}
 	}
 
