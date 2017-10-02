@@ -142,8 +142,21 @@ public class Driver
 		    // writer object is closed.
 		    writer.close();
 
-		    
+		    writer = null;
+		    // Object for PrintWriter is intialized with respective output file name and encoding format.
+		   	writer = new PrintWriter(output2File, "UTF-8");
+		    // writeAll method from Results class is called with writer object to write the test case results to the output file.
+		    backup_results_1.writeAll(writer);
+		    // writer object is closed.
+		    writer.close();
 
+		   	writer = null;
+		    // Object for PrintWriter is intialized with respective output file name and encoding format.
+		   	writer = new PrintWriter(output3File, "UTF-8");
+		    // writeAll method from Results class is called with writer object to write the test case results to the output file.
+		    backup_results_2.writeAll(writer);
+		    // writer object is closed.
+		    writer.close();
 	    }
 	    catch(Exception ex){
 	    	System.err.println(ex.getMessage());// prints the error message.
