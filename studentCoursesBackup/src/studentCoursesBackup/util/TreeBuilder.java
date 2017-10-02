@@ -5,15 +5,26 @@ import studentCoursesBackup.myTree.Node;
 
 public class TreeBuilder{
 
-	private Node root;
+	private Node root_original;
+	private Node root_backup1;
+	private Node root_backup2;
 
 	public TreeBuilder(){
-		root = null;
+		root_original = null;
+		root_backup1 = null;
+		root_backup2 = null;
 	}
 
 	public void insertNode(int newKey, String newName){
-		Node newNode = new Node(newKey, newName);
+		Node node_original = new Node(newKey, newName);
+		insertNode(root_original, node_original);
+		Node node_backup1 = (Node)newNode.clone();
+		insertNode(root_backup1, node_backup1);
+		Node node_backup2 = (Node)newNode.clone();
+		insertNode(root_backup2, node_backup2);
+	}
 
+	private void insertNode(Node root, Node newNode){
 		if(root == null){
 			root = newNode;
 		}else{
@@ -39,7 +50,9 @@ public class TreeBuilder{
 	}
 
 	public void inOrderTraverseTree(){
-		inOrderTraverseTree(root);
+		inOrderTraverseTree(root_original);
+		inOrderTraverseTree(root_backup1);
+		inOrderTraverseTree(root_backup2);
 	}
 
 	private void inOrderTraverseTree(Node currentNode){
@@ -53,7 +66,7 @@ public class TreeBuilder{
 	}
 
 	public void preOrderTraverseTree(){
-		preOrderTraverseTree(root);
+		preOrderTraverseTree(root_original);
 	}
 
 	private void preOrderTraverseTree(Node currentNode){
@@ -67,7 +80,7 @@ public class TreeBuilder{
 	}
 
 	public void postOrderTraverseTree(){
-		postOrderTraverseTree(root);
+		postOrderTraverseTree(root_original);
 	}
 
 	private void postOrderTraverseTree(Node currentNode){
@@ -81,6 +94,10 @@ public class TreeBuilder{
 	}
 
 	public Node findNode(int key){
+		Node currentNode = findNode(root_original, key);
+	}
+
+	private Node findNode(Node root, int key){
 		Node currentNode = root;
 		while(currentNode.getKey() != key){
 			if(key < currentNode.getKey()){
@@ -97,6 +114,10 @@ public class TreeBuilder{
 	}
 
 	public boolean deleteNode(int key){
+		boolean result = deleteNode(root_original, key);
+	}
+
+	private boolean deleteNode(Node root, int key){
 		Node currentNode = root;
 		while(currentNode.getKey() != key){
 			if(key < currentNode.getKey()){
