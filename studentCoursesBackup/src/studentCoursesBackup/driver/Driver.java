@@ -17,7 +17,11 @@ public class Driver
 		// Object declared for TreeBuilder class.
 	    TreeBuilder treeBuilder;
 	    // Object declared for Results class.
-	    Results results;
+	    Results results_orig;
+	   	// Object declared for Results class.
+	    Results backup_results_1;
+	    // Object declared for Results class.
+	    Results backup_results_2;
 	    // Object declared for FileProcessor class.
 	    FileProcessor file;
 	    // Object declared for PrintWriter class.
@@ -120,6 +124,27 @@ public class Driver
 		    	treeBuilder.deleteNode(keyValue);
 		    }
 		    file.readLine(false);
+
+
+		    // Object declared for Results class.
+		    results_orig = new Results();
+		   	// Object declared for Results class.
+		    backup_results_1 = new Results();
+		    // Object declared for Results class.
+		    backup_results_2 = new Results();
+
+		    //treeBuilder.inOrderTraverseTree();
+
+		   	// Object for PrintWriter is intialized with respective output file name and encoding format.
+		   	/*writer = new PrintWriter(outputFile, "UTF-8");
+		   	// Writes the sum value to output file.
+		    writer.println("The sum of all the values in the array list is: " + sumValue);
+		    // writeAll method from Results class is called with writer object to write the test case results to the output file.
+		    results.writeAll(writer);
+		    // writer object is closed.
+		    writer.close();*/
+
+		    
 
 	    }
 	    catch(Exception ex){

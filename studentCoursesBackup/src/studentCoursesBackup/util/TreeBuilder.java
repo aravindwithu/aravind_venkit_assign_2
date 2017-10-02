@@ -5,116 +5,69 @@ import studentCoursesBackup.myTree.Node;
 
 public class TreeBuilder{
 
-	private Node root_original;
-	private Node root_backup1;
-	private Node root_backup2;
+	private Node root_orig;
+	private Node backup_Root_1;
+	private Node backup_Root_2;
 
 	public TreeBuilder(){
-		root_original = null;
-		root_backup1 = null;
-		root_backup2 = null;
+		root_orig = null;
+		backup_Root_1 = null;
+		backup_Root_2 = null;
 	}
 
 	public void insertNode(int newKey, String newName){
-		Node node_original = new Node(newKey, newName);
-		insertNode(root_original, node_original);
-		Node node_backup1 = (Node)newNode.clone();
-		insertNode(root_backup1, node_backup1);
-		Node node_backup2 = (Node)newNode.clone();
-		insertNode(root_backup2, node_backup2);
+		Node node_orig = new Node(newKey, newName);
+		root_orig = insertNode(root_orig, node_orig);
+
+		Node backup_Node_1 = (Node)node_orig.clone();
+		backup_Root_1 = insertNode(backup_Root_1, backup_Node_1);
+		
+		Node backup_Node_2 = (Node)node_orig.clone();
+		backup_Root_2 = insertNode(backup_Root_2, backup_Node_2);
 	}
 
-	private void insertNode(Node root, Node newNode){
-		if(root == null){
-			root = newNode;
-		}else{
-			Node currentNode = root;
-			Node parentNode;
-			while(true){
-				parentNode = currentNode;
-				if(newKey < currentNode.getKey()){
-					currentNode = currentNode.getLeftChild();
-					if(currentNode == null){
-						parentNode.setLeftChild(newNode); 
-						return;
-					}
-				}else{
-					currentNode = currentNode.getRightChild();
-					if(currentNode == null){
-						parentNode.setRightChild(newNode); 
-						return;
-					}
-				}
-			}
-		}
+	private Node insertNode(Node root, Node newNode){
+		
+		/* If the tree is empty, return a new node */
+        if (root == null) {
+            root = newNode;
+            return root;
+        }
+ 
+        /* Otherwise, recur down the tree */
+        if (newNode.getKey() < root.getKey()){
+            root.setLeftChild(insertNode(root.getLeftChild(), newNode));
+        }
+    	else if (newNode.getKey() > root.getKey()){
+            root.setRightChild(insertNode(root.getRightChild(), newNode));
+        }
+ 
+        /* return the (unchanged) node pointer */
+        return root;
 	}
 
-	public void inOrderTraverseTree(){
-		inOrderTraverseTree(root_original);
-		inOrderTraverseTree(root_backup1);
-		inOrderTraverseTree(root_backup2);
+	public void printNodes(){
+		System.out.println("orig");
+		inOrderTraverseTree(root_orig);
+		System.out.println("backup1");
+		inOrderTraverseTree(backup_Root_1);
+		System.out.println("backup2");
+		inOrderTraverseTree(backup_Root_2);
 	}
 
-	private void inOrderTraverseTree(Node currentNode){
+	private void printNodes(Node currentNode){
 		if(currentNode != null){
 			inOrderTraverseTree(currentNode.getLeftChild());
-			if(0 != currentNode.getKey()){
+			if(0 != currentNode.getKey() && "" != currentNode.getName()){
 				System.out.println(currentNode.getKey());
 			}			
 			inOrderTraverseTree(currentNode.getRightChild());
 		}
 	}
 
-	public void preOrderTraverseTree(){
-		preOrderTraverseTree(root_original);
-	}
-
-	private void preOrderTraverseTree(Node currentNode){
-		if(currentNode != null){
-			if(0 != currentNode.getKey()){
-				System.out.println(currentNode.getKey());
-			}	
-			preOrderTraverseTree(currentNode.getLeftChild());		
-			preOrderTraverseTree(currentNode.getRightChild());
-		}
-	}
-
-	public void postOrderTraverseTree(){
-		postOrderTraverseTree(root_original);
-	}
-
-	private void postOrderTraverseTree(Node currentNode){
-		if(currentNode != null){	
-			postOrderTraverseTree(currentNode.getLeftChild());		
-			postOrderTraverseTree(currentNode.getRightChild());
-			if(0 != currentNode.getKey()){
-				System.out.println(currentNode.getKey());
-			}
-		}
-	}
-
-	public Node findNode(int key){
-		Node currentNode = findNode(root_original, key);
-	}
-
-	private Node findNode(Node root, int key){
-		Node currentNode = root;
-		while(currentNode.getKey() != key){
-			if(key < currentNode.getKey()){
-				currentNode = currentNode.getLeftChild();
-			}else{
-				currentNode = currentNode.getRightChild();
-			}
-
-			if(currentNode == null){
-				return null;
-			}
-		}
-		return currentNode;
-	}
-
 	public boolean deleteNode(int key){
-		boolean result = deleteNode(root_original, key);
+		boolean result = deleteNode(root_orig, key);
+		return result;
 	}
 
 	private boolean deleteNode(Node root, int key){
@@ -137,4 +90,52 @@ public class TreeBuilder{
 			return false;
 		}	
 	}
+
+	/*public void preOrderTraverseTree(){
+		preOrderTraverseTree(root_orig);
+	}
+
+	private void preOrderTraverseTree(Node currentNode){
+		if(currentNode != null){
+			if(0 != currentNode.getKey()){
+				System.out.println(currentNode.getKey());
+			}	
+			preOrderTraverseTree(currentNode.getLeftChild());		
+			preOrderTraverseTree(currentNode.getRightChild());
+		}
+	}
+
+	public void postOrderTraverseTree(){
+		postOrderTraverseTree(root_orig);
+	}
+
+	private void postOrderTraverseTree(Node currentNode){
+		if(currentNode != null){	
+			postOrderTraverseTree(currentNode.getLeftChild());		
+			postOrderTraverseTree(currentNode.getRightChild());
+			if(0 != currentNode.getKey()){
+				System.out.println(currentNode.getKey());
+			}
+		}
+	}
+
+	public Node findNode(int key){
+		Node currentNode = findNode(root_orig, key);
+	}
+
+	private Node findNode(Node root, int key){
+		Node currentNode = root;
+		while(currentNode.getKey() != key){
+			if(key < currentNode.getKey()){
+				currentNode = currentNode.getLeftChild();
+			}else{
+				currentNode = currentNode.getRightChild();
+			}
+
+			if(currentNode == null){
+				return null;
+			}
+		}
+		return currentNode;
+	}*/
 }
