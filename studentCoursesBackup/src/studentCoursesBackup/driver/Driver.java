@@ -133,16 +133,14 @@ public class Driver
 		    // Object declared for Results class.
 		    backup_results_2 = new Results();
 
-		    //treeBuilder.inOrderTraverseTree();
+		    treeBuilder.printNodes(results_orig, backup_results_1, backup_results_2);
 
 		   	// Object for PrintWriter is intialized with respective output file name and encoding format.
-		   	/*writer = new PrintWriter(outputFile, "UTF-8");
-		   	// Writes the sum value to output file.
-		    writer.println("The sum of all the values in the array list is: " + sumValue);
+		   	writer = new PrintWriter(output1File, "UTF-8");
 		    // writeAll method from Results class is called with writer object to write the test case results to the output file.
-		    results.writeAll(writer);
+		    results_orig.writeAll(writer);
 		    // writer object is closed.
-		    writer.close();*/
+		    writer.close();
 
 		    
 
