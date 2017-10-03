@@ -40,7 +40,8 @@
            classpath="${classes}"
            debug="on"
            optimize="on"
-           deprecation="off"/>
+           deprecation="off"
+           includeantruntime="false"/>
   </target>
 
 <target name="run" depends="jar">

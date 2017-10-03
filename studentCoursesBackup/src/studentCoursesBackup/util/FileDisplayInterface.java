@@ -1,11 +1,18 @@
 package studentCoursesBackup.util;
 
-/*
+/**
 * FileDisplayInterface interface.
-* Created by Aravind Venkit for cs542 - Design patterns.
+* Created for cs542 - Design patterns.
 * FileDisplayInterface interface to write to output file.
+* @author Aravind Venkit
 */
 public interface FileDisplayInterface{
-	// writeToFile method is declared.
+	/**
+	* writeToFile method.
+	* Implements FileDisplayInterface writeToFile method.
+	* gets String s as argument.
+	* writes the given string to output file.
+	* @param String s to be writtern to the writer object. 
+	*/
 	public void writeToFile(String s);
 }

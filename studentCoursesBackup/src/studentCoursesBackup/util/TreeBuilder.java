@@ -16,17 +16,17 @@ public class TreeBuilder{
 		backup_Root_2 = null;
 	}
 
-	public void insertNode(int newKey, String newName){
+	public void insertNode(int newBNumber, String newCourse){
 		try{
-			Node node_orig = new Node(newKey, newName);
-			root_orig = insertNode(root_orig, node_orig);
-			
-			Node backup_Node_1 = node_orig.clone();			
-			backup_Root_1 = insertNode(backup_Root_1, backup_Node_1);
-			node_orig.addReference(backup_Node_1);
+			Node node_orig = new Node(newBNumber, newCourse);
+			Node backup_Node_1 = node_orig.clone();	
+			Node backup_Node_2 = node_orig.clone();
 
-			Node backup_Node_2 = node_orig.clone();			
+			root_orig = insertNode(root_orig, node_orig);
+			backup_Root_1 = insertNode(backup_Root_1, backup_Node_1);
 			backup_Root_2 = insertNode(backup_Root_2, backup_Node_2);
+
+			node_orig.addReference(backup_Node_1);
 			node_orig.addReference(backup_Node_2);
 		}
 		catch(Exception ex){
@@ -43,15 +43,15 @@ public class TreeBuilder{
             return root;
         }
         /* Otherwise, recur down the tree */
-      	if (newNode.getKey() < root.getKey()){
+      	if (newNode.getBNumber() < root.getBNumber()){
             root.setLeftChild(insertNode(root.getLeftChild(), newNode));
         }
-    	else if (newNode.getKey() > root.getKey()){
+    	else if (newNode.getBNumber() > root.getBNumber()){
             root.setRightChild(insertNode(root.getRightChild(), newNode));
         }
-        else if(newNode.getKey() == root.getKey()){
-        	if(!newNode.isNameNull()){
-        		root.setName(newNode.getName(0));
+        else if(newNode.getBNumber() == root.getBNumber()){
+        	if(!newNode.isCourseNull()){
+        		root.setCourse(newNode.getCourse(0));
         	}
         }
         /* return the (unchanged) node pointer */
@@ -70,24 +70,24 @@ public class TreeBuilder{
 	private void printNodes(Node currentNode, Results result){
 		if(currentNode != null){
 			printNodes(currentNode.getLeftChild(), result);
-			if(0 != currentNode.getKey() && !currentNode.isNameNull()){
-				System.out.println(currentNode.getKey() + ":" + currentNode.getName());
-				String resultStr = currentNode.getKey() + ":" + currentNode.getName();
+			if(0 != currentNode.getBNumber() && !currentNode.isCourseNull()){
+				System.out.println(currentNode.getBNumber() + ":" + currentNode.getCourse());
+				String resultStr = currentNode.getBNumber() + ":" + currentNode.getCourse();
 				result.storeNewResult(resultStr);
 			}			
 			printNodes(currentNode.getRightChild(), result);
 		}
 	}
 
-	public boolean deleteNode(int key, String name){
-		boolean result = deleteNode(root_orig, key, name);
+	public boolean deleteNode(int bNumber, String course){
+		boolean result = deleteNode(root_orig, bNumber, course);
 		return result;
 	}
 
-	private boolean deleteNode(Node root, int key, String name){
+	private boolean deleteNode(Node root, int bNumber, String course){
 		Node currentNode = root;
-		while(currentNode.getKey() != key){
-			if(key < currentNode.getKey()){
+		while(currentNode.getBNumber() != bNumber){
+			if(bNumber < currentNode.getBNumber()){
 				currentNode = currentNode.getLeftChild();
 			}else{
 				currentNode = currentNode.getRightChild();
@@ -98,11 +98,26 @@ public class TreeBuilder{
 			}
 		}
 		if(currentNode != null){
-			System.out.println("clear key found is "+ currentNode.getKey());
-			currentNode.clearName(name);
+			currentNode.clearCourse(course);
 			return true;
 		}else{
 			return false;
 		}	
+	}
+
+	public Node searchNode(Node root, int bNumber){
+		Node currentNode = root;
+		while(currentNode.getBNumber() != bNumber){
+			if(bNumber < currentNode.getBNumber()){
+				currentNode = currentNode.getLeftChild();
+			}else{
+				currentNode = currentNode.getRightChild();
+			}
+
+			if(currentNode == null){
+				return null;
+			}
+		}
+		return currentNode;
 	}
 }

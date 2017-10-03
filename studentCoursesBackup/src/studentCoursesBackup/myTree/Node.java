@@ -10,8 +10,8 @@ import studentCoursesBackup.myTree.SubjectI;
 * class to structure node structure.
 */
 public class Node implements Cloneable, SubjectI, ObserverI{
-	private int key;
-	private ArrayList<String> nameList;
+	private int bNumber;
+	private ArrayList<String> courseList;
 
 	private Node leftChild;
 	private Node rightChild;
@@ -22,9 +22,9 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	}
 
 	public Node(int keyIn, String nameIn){
-		key = keyIn;
-		nameList  = new ArrayList<String>();
-		nameList.add(nameIn);
+		bNumber = keyIn;
+		courseList  = new ArrayList<String>();
+		courseList.add(nameIn);
 		leftChild = new Node();
 		rightChild = new Node();
 		nodeList = new ArrayList<Node>();
@@ -33,11 +33,14 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	public Node clone() throws CloneNotSupportedException {
 		Node cloneNode = new Node();
 
-		cloneNode.key = key;
-		cloneNode.nameList  = new ArrayList<String>();
-		for(String name : nameList){
-			cloneNode.nameList.add(name);
+		cloneNode.bNumber = bNumber;
+		cloneNode.courseList  = new ArrayList<String>();
+		for(String course : courseList){
+			cloneNode.courseList.add(course);
 		}
+
+		cloneNode.leftChild = new Node();
+		cloneNode.rightChild = new Node();
 
 		return cloneNode;
 	}
@@ -46,41 +49,41 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 		nodeList.add(backup_node);
 	}
 
-	public int getKey(){
-		return key;
+	public int getBNumber(){
+		return bNumber;
 	}
 
-	public boolean isNameNull(){
-		if(0<nameList.size()){
+	public boolean isCourseNull(){
+		if(0<courseList.size()){
 			return false;
 		}
 		return true;
 	}
 
-	public String getName(){
+	public String getCourse(){
 		String result = "";
-		if(!isNameNull()){
-			for(String name : nameList){
-				result += (name + ",");
+		if(!isCourseNull()){
+			for(String course : courseList){
+				result += (course + ",");
 			}
 			result = result.substring(0, (result.length() -1));
 		}
 		return result;
 	}
 
-	public String getName(int index){
-		if(isNameNull()){
+	public String getCourse(int index){
+		if(isCourseNull()){
 			return null;
 		}
-		if(index >= nameList.size()){
+		if(index >= courseList.size()){
 			return null;
 		}
-		return nameList.get(index);
+		return courseList.get(index);
 	}
 
-	public void setName(String nameIn){
-		if(!nameList.contains(nameIn)){
-			nameList.add(nameIn);
+	public void setCourse(String nameIn){
+		if(!courseList.contains(nameIn)){
+			courseList.add(nameIn);
 		}		
 	}
 
@@ -100,11 +103,11 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 		rightChild = nodeIn;
 	}
 
-	public void clearName(String nameIn){
+	public void clearCourse(String nameIn){
 		int nameIndex = -1;
-		for(int i = 0; i<nameList.size(); i++){
-			if(nameIn.equals(nameList.get(i))){
-				nameList.remove(i);
+		for(int i = 0; i<courseList.size(); i++){
+			if(nameIn.equals(courseList.get(i))){
+				courseList.remove(i);
 				nameIndex = i;
 				break;
 			}
@@ -121,6 +124,6 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	}
 
 	public void update(int nameIndex){
-		nameList.remove(nameIndex);
+		courseList.remove(nameIndex);
 	}
 }
