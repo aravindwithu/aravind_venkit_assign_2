@@ -77,7 +77,6 @@ public class Driver
 		    treeBuilder.insertNode(1250, "A");
 		    treeBuilder.insertNode(1277, "A");
 		    treeBuilder.insertNode(1212, "A");*/
-
 		    // Object intialized for FileProcessor with respective input file.
 			file = new FileProcessor(inputFile);
 			// The input values are read from file and stored in my array list.
@@ -121,10 +120,9 @@ public class Driver
 		    	}
 
 		    	String nameValue = lineValues[1];
-		    	treeBuilder.deleteNode(keyValue);
+		    	treeBuilder.deleteNode(keyValue, nameValue);
 		    }
 		    file.readLine(false);
-
 
 		    // Object declared for Results class.
 		    results_orig = new Results();
