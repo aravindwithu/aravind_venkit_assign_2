@@ -39,14 +39,8 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 			cloneNode.nameList.add(name);
 		}
 
-		cloneNode.leftChild = new Node();
-		cloneNode.rightChild = new Node();
-		cloneNode.nodeList = new ArrayList<Node>();
-
 		return cloneNode;
 	}
-
-
 
 	public void addReference(Node backup_node){
 		nodeList.add(backup_node);
@@ -56,16 +50,28 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 		return key;
 	}
 
+	public boolean isNameNull(){
+		if(0<nameList.size()){
+			return false;
+		}
+		return true;
+	}
+
 	public String getName(){
 		String result = "";
-		for(String name : nameList){
-			result += (name + ",");
+		if(!isNameNull()){
+			for(String name : nameList){
+				result += (name + ",");
+			}
+			result = result.substring(0, (result.length() -1));
 		}
-		result = result.substring(0, (result.length() -1));
 		return result;
 	}
 
 	public String getName(int index){
+		if(isNameNull()){
+			return null;
+		}
 		if(index >= nameList.size()){
 			return null;
 		}
@@ -73,7 +79,9 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	}
 
 	public void setName(String nameIn){
-		nameList.add(nameIn);
+		if(!nameList.contains(nameIn)){
+			nameList.add(nameIn);
+		}		
 	}
 
 	public Node getLeftChild(){
@@ -93,26 +101,26 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	}
 
 	public void clearName(String nameIn){
-		boolean isCleared = false;
+		int nameIndex = -1;
 		for(int i = 0; i<nameList.size(); i++){
-			if(nameList.get(i) == nameIn){
+			if(nameIn.equals(nameList.get(i))){
 				nameList.remove(i);
-				isCleared = true;
+				nameIndex = i;
 				break;
 			}
 		}
-		notifyAll(isCleared);
-	}
-
-	public void notifyAll(boolean isCleared){
-		if(isCleared){
-			for(Node backup_node : nodeList){
-				backup_node.update(nameList);
-			}
+		if(nameIndex != -1){
+			notifyAll(nameIndex);
 		}
 	}
 
-	public void update(ArrayList<String> nameListIn){
-		nameList = nameListIn;
+	public void notifyAll(int clearNameIndex){
+		for(Node backup_node : nodeList){
+			backup_node.update(clearNameIndex);
+		}
+	}
+
+	public void update(int nameIndex){
+		nameList.remove(nameIndex);
 	}
 }

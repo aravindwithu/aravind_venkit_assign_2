@@ -71,12 +71,6 @@ public class Driver
 		    }
 
 			treeBuilder = new TreeBuilder();
-		    /*
-		    treeBuilder.insertNode(1234, "A");
-		    treeBuilder.insertNode(1200, "A");
-		    treeBuilder.insertNode(1250, "A");
-		    treeBuilder.insertNode(1277, "A");
-		    treeBuilder.insertNode(1212, "A");*/
 		    // Object intialized for FileProcessor with respective input file.
 			file = new FileProcessor(inputFile);
 			// The input values are read from file and stored in my array list.
@@ -89,20 +83,13 @@ public class Driver
 		    		keyValue =  Integer.parseInt(lineValues[0]);
 		    	}
 		    	catch(Exception ex){// To catch the in parse invalid error.
-		    		throw new Exception("Invalid value: "+ line +", Please provide numbers in the range 0-10000.");
+		    		throw new Exception("Invalid Bnumber: "+ line +", Please provide valid 4 digit Bnumber.");
 		    	}
 
 		    	String nameValue = lineValues[1];
 		    	treeBuilder.insertNode(keyValue, nameValue);
 		    }
 		    file.readLine(false);
-
-			/*System.out.println("in order");
-		    treeBuilder.inOrderTraverseTree();
-		    System.out.println("pre order");
-		    treeBuilder.preOrderTraverseTree();
-		    System.out.println("post order");
-		    treeBuilder.postOrderTraverseTree();*/
 
 		    file =  null;
 		    file = new FileProcessor(deleteFile);

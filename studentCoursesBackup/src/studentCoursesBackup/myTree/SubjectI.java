@@ -5,5 +5,5 @@ package studentCoursesBackup.myTree;
 * Created by Aravind Venkit for cs542 - Design patterns.
 */
 public interface SubjectI{
-	public void notifyAll(boolean isCleared);
+	public void notifyAll(int clearNameIndex);
 }

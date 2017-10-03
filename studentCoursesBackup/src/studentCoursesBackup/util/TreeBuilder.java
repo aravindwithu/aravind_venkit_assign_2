@@ -18,39 +18,16 @@ public class TreeBuilder{
 
 	public void insertNode(int newKey, String newName){
 		try{
-			Node node_orig = findNode(root_orig, newKey);
-			if(node_orig == null){
-				node_orig = new Node(newKey, newName);
-				root_orig = insertNode(root_orig, node_orig);
-			}else{
-				node_orig.setName(newName);
-			}
+			Node node_orig = new Node(newKey, newName);
+			root_orig = insertNode(root_orig, node_orig);
+			
+			Node backup_Node_1 = node_orig.clone();			
+			backup_Root_1 = insertNode(backup_Root_1, backup_Node_1);
+			node_orig.addReference(backup_Node_1);
 
-			Node backup_Node_1 = findNode(backup_Root_1, newKey);
-			if(backup_Node_1 == null){
-				backup_Node_1 = node_orig.clone();			
-				backup_Root_1 = insertNode(backup_Root_1, backup_Node_1);
-				node_orig.addReference(backup_Node_1);
-			}else{
-				backup_Node_1.setName(newName);
-			}
-
-			Node backup_Node_2 = findNode(backup_Root_2, newKey);
-			if(backup_Node_2 == null){
-				backup_Node_2 = node_orig.clone();			
-				backup_Root_2 = insertNode(backup_Root_2, backup_Node_2);
-				node_orig.addReference(backup_Node_2);
-			}else{
-				backup_Node_2.setName(newName);
-			}
-
-			/*Node backup_Node_2 = findNode(backup_Root_2, newKey);
-			if(backup_Node_2 == null){
-				backup_Node_2 = node_orig.clone();
-				backup_Root_2 = insertNode(backup_Root_2, backup_Node_2);
-			}else{
-				backup_Node_2.setName(newName);
-			}*/
+			Node backup_Node_2 = node_orig.clone();			
+			backup_Root_2 = insertNode(backup_Root_2, backup_Node_2);
+			node_orig.addReference(backup_Node_2);
 		}
 		catch(Exception ex){
 			System.err.println(ex.getMessage());// prints the error message.
@@ -60,13 +37,11 @@ public class TreeBuilder{
 	}
 
 	private Node insertNode(Node root, Node newNode){
-		
 		/* If the tree is empty, return a new node */
         if (root == null) {
             root = newNode;
             return root;
         }
- 
         /* Otherwise, recur down the tree */
       	if (newNode.getKey() < root.getKey()){
             root.setLeftChild(insertNode(root.getLeftChild(), newNode));
@@ -74,10 +49,11 @@ public class TreeBuilder{
     	else if (newNode.getKey() > root.getKey()){
             root.setRightChild(insertNode(root.getRightChild(), newNode));
         }
-        /*else if(newNode.getKey() == root.getKey()){
-        	root.setName(newNode.getName(0));
-        }*/
- 
+        else if(newNode.getKey() == root.getKey()){
+        	if(!newNode.isNameNull()){
+        		root.setName(newNode.getName(0));
+        	}
+        }
         /* return the (unchanged) node pointer */
         return root;
 	}
@@ -94,7 +70,7 @@ public class TreeBuilder{
 	private void printNodes(Node currentNode, Results result){
 		if(currentNode != null){
 			printNodes(currentNode.getLeftChild(), result);
-			if(0 != currentNode.getKey() && "" != currentNode.getName()){
+			if(0 != currentNode.getKey() && !currentNode.isNameNull()){
 				System.out.println(currentNode.getKey() + ":" + currentNode.getName());
 				String resultStr = currentNode.getKey() + ":" + currentNode.getName();
 				result.storeNewResult(resultStr);
@@ -122,77 +98,11 @@ public class TreeBuilder{
 			}
 		}
 		if(currentNode != null){
+			System.out.println("clear key found is "+ currentNode.getKey());
 			currentNode.clearName(name);
 			return true;
 		}else{
 			return false;
 		}	
 	}
-
-	private Node findNode(Node root, int key){
-		if(root == null){
-			return null;
-		}
-		Node currentNode = root;
-		while(currentNode.getKey() != key){
-			if(key < currentNode.getKey()){
-				currentNode = currentNode.getLeftChild();
-			}else{
-				currentNode = currentNode.getRightChild();
-			}
-
-			if(currentNode == null){
-				return null;
-			}
-		}
-		return currentNode;
-	}
-
-	/*public void preOrderTraverseTree(){
-		preOrderTraverseTree(root_orig);
-	}
-
-	private void preOrderTraverseTree(Node currentNode){
-		if(currentNode != null){
-			if(0 != currentNode.getKey()){
-				System.out.println(currentNode.getKey());
-			}	
-			preOrderTraverseTree(currentNode.getLeftChild());		
-			preOrderTraverseTree(currentNode.getRightChild());
-		}
-	}
-
-	public void postOrderTraverseTree(){
-		postOrderTraverseTree(root_orig);
-	}
-
-	private void postOrderTraverseTree(Node currentNode){
-		if(currentNode != null){	
-			postOrderTraverseTree(currentNode.getLeftChild());		
-			postOrderTraverseTree(currentNode.getRightChild());
-			if(0 != currentNode.getKey()){
-				System.out.println(currentNode.getKey());
-			}
-		}
-	}
-
-	public Node findNode(int key){
-		Node currentNode = findNode(root_orig, key);
-	}
-
-	private Node findNode(Node root, int key){
-		Node currentNode = root;
-		while(currentNode.getKey() != key){
-			if(key < currentNode.getKey()){
-				currentNode = currentNode.getLeftChild();
-			}else{
-				currentNode = currentNode.getRightChild();
-			}
-
-			if(currentNode == null){
-				return null;
-			}
-		}
-		return currentNode;
-	}*/
 }
