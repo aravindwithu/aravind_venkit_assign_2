@@ -12,7 +12,7 @@ public interface StdoutDisplayInterface{
 	* Implements StdoutDisplayInterface writeToStdout method.
 	* gets String s as argument.
 	* prints the given string to command line.
-	* @param String s to print the same to output command line.
+	* @param s to print the same to output command line.
 	*/
 	public void writeToStdout(String s);
 }

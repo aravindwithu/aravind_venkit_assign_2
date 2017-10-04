@@ -10,7 +10,7 @@ public interface ObserverI{
 	/**
 	* update method.
 	* updates the respective index in the course list of observer nodes.
-	* @param String nameIn
+	* @param nameIndex
 	*/
 	public void update(int nameIndex);
 }

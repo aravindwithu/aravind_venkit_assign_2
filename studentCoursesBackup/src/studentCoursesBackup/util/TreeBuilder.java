@@ -37,8 +37,8 @@ public class TreeBuilder{
 	* 2nd creates 2 clones for backup1 and backup2.
 	* 3rd Inserts the original and cloned nodes to the BST structure using private InsertNode method.
 	* 4th addes the cloned backup nodes to the node array list for reference in original node.
-	* @param new bNumber.
-	* @param new course.
+	* @param newBNumber.
+	* @param newCourse.
 	*/
 	public void insertNode(int newBNumber, String newCourse){
 		try{
@@ -71,7 +71,7 @@ public class TreeBuilder{
 	* 5th insertNode method is called recursively to add the nodes in BST chain structure.
 	* 6th recursive function terminates once the node is inserted in BST structure or course is set. 
 	* @param root of the respective tree.
-	* @param new created or cloned node.
+	* @param newNode created or cloned node.
 	* @see http://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
 	* @return Node (root);
 	*/
@@ -97,9 +97,9 @@ public class TreeBuilder{
 	/**
 	* printNodes public method.
 	* To write tree data to result array list.
-	* @param Result results_orig.
-	* @param Result backup_Results_1.
-	* @param Result backup_Results_2.
+	* @param results_orig.
+	* @param backup_Results_1.
+	* @param backup_Results_2.
 	*/
 	public void printNodes(Results results_orig, Results backup_Results_1, Results backup_Results_2){
 		printNodes(root_orig, results_orig);
@@ -110,9 +110,8 @@ public class TreeBuilder{
 	/**
 	* printNodes private method.
 	* To write tree data to result array list.
-	* @param results_orig.
-	* @param backup_Results_1.
-	* @param backup_Results_2.
+	* @param currentNode
+	* @param result
 	*/
 	private void printNodes(Node currentNode, Results result){
 		if(currentNode != null){
@@ -129,8 +128,8 @@ public class TreeBuilder{
 	/**
 	* deleteNode public method.
 	* Deletes the node from tree (Only updates and remove course)
-	* @param int bNumber
-	* @param int course
+	* @param bNumber
+	* @param course
 	* @return boolean value indicates node is deleted or not.
 	*/
 	public boolean deleteNode(int bNumber, String course){
@@ -141,8 +140,8 @@ public class TreeBuilder{
 	/**
 	* deleteNode private method.
 	* Deletes the node from tree (Only updates and remove course)
-	* @param int bNumber
-	* @param int course
+	* @param bNumber
+	* @param course
 	* @return boolean value indicates node is deleted or not.
 	*/
 	private boolean deleteNode(Node root, int bNumber, String course){
@@ -169,8 +168,8 @@ public class TreeBuilder{
 	/**
 	* deleteNode private method.
 	* Searches the given bNumber and returns the node from tree.
-	* @param Node root
-	* @param int bNumber
+	* @param root
+	* @param bNumber
 	* @return boolean value indicates node is deleted or not.
 	*/
 	public Node searchNode(Node root, int bNumber){

@@ -11,7 +11,7 @@ public interface SubjectI{
 	* notifyAll method.
 	* called from subject node to notifies the observer nodes.
 	* notifies the respective index in the course list.
-	* @param int clearNameIndex
+	* @param clearNameIndex
 	*/
 	public void notifyAll(int clearNameIndex);
 }

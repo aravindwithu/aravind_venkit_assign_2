@@ -63,7 +63,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 	* Implements StdoutDisplayInterface writeToStdout method.
 	* gets String s as argument.
 	* prints the given string to command line.
-	* @param String s to print the same to output command line.
+	* @param s to print the same to output command line.
 	*/
 	public void writeToStdout(String s){
 		System.out.println(s);
@@ -73,7 +73,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 	* Implements FileDisplayInterface writeToFile method.
 	* gets String s as argument.
 	* writes the given string to output file.
-	* @param String s to be writtern to the writer object. 
+	* @param s to be writtern to the writer object. 
 	*/
 	public void writeToFile(String s){
 			writer.println(s);

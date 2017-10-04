@@ -61,7 +61,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 
 	/**
 	* addReference method to add backup node reference to the original node.
-	* @param Node backup_node
+	* @param backup_node
 	*/
 	public void addReference(Node backup_node){
 		nodeList.add(backup_node);
@@ -118,7 +118,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	/**
 	* setCourse method.
 	* adds course to course list
-	* @param String nameIn
+	* @param nameIn
 	*/
 	public void setCourse(String nameIn){
 		if(!courseList.contains(nameIn)){
@@ -136,7 +136,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 
 	/**
 	* setLeftChild method.
-	* @param Node nodeIn (sets the leftChild)
+	* @param nodeIn (sets the leftChild)
 	*/
 	public void setLeftChild(Node nodeIn){
 		leftChild = nodeIn;
@@ -152,7 +152,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 
 	/**
 	* setLeftChild method.
-	* @param Node nodeIn (sets the rightChild)
+	* @param nodeIn (sets the rightChild)
 	*/
 	public void setRightChild(Node nodeIn){
 		rightChild = nodeIn;
@@ -161,7 +161,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	/**
 	* setLeftChild method.
 	* clears the original node course and as subject node notifies the observer nodes.
-	* @param String nameIn
+	* @param nameIn
 	*/
 	public void clearCourse(String nameIn){
 		int nameIndex = -1;
@@ -181,7 +181,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	* notifyAll method.
 	* called from subject node to notifies the observer nodes.
 	* notifies the respective index in the course list.
-	* @param int clearNameIndex
+	* @param clearNameIndex
 	*/
 	public void notifyAll(int clearNameIndex){
 		for(Node backup_node : nodeList){
@@ -192,7 +192,7 @@ public class Node implements Cloneable, SubjectI, ObserverI{
 	/**
 	* update method.
 	* updates the respective index in the course list of observer nodes.
-	* @param String nameIn
+	* @param nameIndex
 	*/
 	public void update(int nameIndex){
 		courseList.remove(nameIndex);

@@ -34,10 +34,9 @@ public class FileProcessor{
 	/**
 	* readLine method.
 	* Reads the line from file.
-	* Needs 1 arguments 1 -> boolean read.
 	* If read is true then readLine() is returned else file object is closed.
-	* @param boolean read - If read is true then readLine() is returned else file object is closed. 
-	* @return read file line string or message related to file activity.
+	* @param read - If read is true then readLine() is returned else file object is closed. 
+	* @return String - read file line string or message related to file activity.
 	*/
 	public String readLine(boolean read){
 		try{

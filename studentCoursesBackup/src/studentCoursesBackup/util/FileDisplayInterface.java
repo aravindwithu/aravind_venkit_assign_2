@@ -12,7 +12,7 @@ public interface FileDisplayInterface{
 	* Implements FileDisplayInterface writeToFile method.
 	* gets String s as argument.
 	* writes the given string to output file.
-	* @param String s to be writtern to the writer object. 
+	* @param s to be writtern to the writer object. 
 	*/
 	public void writeToFile(String s);
 }
