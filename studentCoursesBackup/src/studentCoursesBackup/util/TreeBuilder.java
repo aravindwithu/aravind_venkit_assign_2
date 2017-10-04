@@ -4,18 +4,42 @@ package studentCoursesBackup.util;
 import studentCoursesBackup.myTree.Node;
 import studentCoursesBackup.util.Results;
 
+/**
+* TreeBuilder class.
+* Created for cs542 - Design patterns, Assignment 2.
+* class to structure node structure.
+* @author Aravind Venkit
+*/
 public class TreeBuilder{
 
+	/**
+	*Declares the root object for original, backup 1 and backup 2 trees.
+	*/
 	private Node root_orig;
 	private Node backup_Root_1;
 	private Node backup_Root_2;
 
+	/**
+	* TreeBuilder constructor to intialize TreeBuilder class.
+	* Intializes the root object for original, backup 1 and backup 2 trees to null.
+	*/
 	public TreeBuilder(){
 		root_orig = null;
 		backup_Root_1 = null;
 		backup_Root_2 = null;
 	}
 
+	/**
+	* insertNode public method.
+	* To create and clone respective Nodes and to insert the same in BST structure.
+	* BST - Binary Search Tree.
+	* 1st creates the original node.
+	* 2nd creates 2 clones for backup1 and backup2.
+	* 3rd Inserts the original and cloned nodes to the BST structure using private InsertNode method.
+	* 4th addes the cloned backup nodes to the node array list for reference in original node.
+	* @param new bNumber.
+	* @param new course.
+	*/
 	public void insertNode(int newBNumber, String newCourse){
 		try{
 			Node node_orig = new Node(newBNumber, newCourse);
@@ -36,13 +60,26 @@ public class TreeBuilder{
 		}
 	}
 
+	/**
+	* insertNode private method.
+	* To creates BST structure with given new node the root node.
+	* BST - Binary Search Tree.
+	* 1st If root is empty then stores the new node in the root and returns the node.
+	* 2nd if bNumber of new node os less than bNumber of root node then inserts the new node as left child of the root.
+	* 3rd if bNumber of new node os greater than bNumber of root node then inserts the new node as right child of the root.
+	* 4th if bNumber of new node os equal bNumber of root node then setCourse method from Node class is called to set the new course to the respective node.
+	* 5th insertNode method is called recursively to add the nodes in BST chain structure.
+	* 6th recursive function terminates once the node is inserted in BST structure or course is set. 
+	* @param root of the respective tree.
+	* @param new created or cloned node.
+	* @see http://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+	* @return Node (root);
+	*/
 	private Node insertNode(Node root, Node newNode){
-		/* If the tree is empty, return a new node */
         if (root == null) {
             root = newNode;
             return root;
         }
-        /* Otherwise, recur down the tree */
       	if (newNode.getBNumber() < root.getBNumber()){
             root.setLeftChild(insertNode(root.getLeftChild(), newNode));
         }
@@ -54,10 +91,16 @@ public class TreeBuilder{
         		root.setCourse(newNode.getCourse(0));
         	}
         }
-        /* return the (unchanged) node pointer */
         return root;
 	}
 
+	/**
+	* printNodes public method.
+	* To write tree data to result array list.
+	* @param Result results_orig.
+	* @param Result backup_Results_1.
+	* @param Result backup_Results_2.
+	*/
 	public void printNodes(Results results_orig, Results backup_Results_1, Results backup_Results_2){
 		System.out.println("orig");
 		printNodes(root_orig, results_orig);
@@ -67,6 +110,13 @@ public class TreeBuilder{
 		printNodes(backup_Root_2, backup_Results_2);
 	}
 
+	/**
+	* printNodes private method.
+	* To write tree data to result array list.
+	* @param results_orig.
+	* @param backup_Results_1.
+	* @param backup_Results_2.
+	*/
 	private void printNodes(Node currentNode, Results result){
 		if(currentNode != null){
 			printNodes(currentNode.getLeftChild(), result);
@@ -79,11 +129,25 @@ public class TreeBuilder{
 		}
 	}
 
+	/**
+	* deleteNode public method.
+	* Deletes the node from tree (Only updates and remove course)
+	* @param int bNumber
+	* @param int course
+	* @return boolean value indicates node is deleted or not.
+	*/
 	public boolean deleteNode(int bNumber, String course){
 		boolean result = deleteNode(root_orig, bNumber, course);
 		return result;
 	}
 
+	/**
+	* deleteNode private method.
+	* Deletes the node from tree (Only updates and remove course)
+	* @param int bNumber
+	* @param int course
+	* @return boolean value indicates node is deleted or not.
+	*/
 	private boolean deleteNode(Node root, int bNumber, String course){
 		Node currentNode = root;
 		while(currentNode.getBNumber() != bNumber){
@@ -105,6 +169,13 @@ public class TreeBuilder{
 		}	
 	}
 
+	/**
+	* deleteNode private method.
+	* Searches the given bNumber and returns the node from tree.
+	* @param Node root
+	* @param int bNumber
+	* @return boolean value indicates node is deleted or not.
+	*/
 	public Node searchNode(Node root, int bNumber){
 		Node currentNode = root;
 		while(currentNode.getBNumber() != bNumber){

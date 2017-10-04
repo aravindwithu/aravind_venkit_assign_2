@@ -7,6 +7,10 @@ package studentCoursesBackup.myTree;
 * @author Aravind Venkit
 */
 public interface ObserverI{
-	// Method to update the observer nodes (backup nodes).
+	/**
+	* update method.
+	* updates the respective index in the course list of observer nodes.
+	* @param String nameIn
+	*/
 	public void update(int nameIndex);
 }

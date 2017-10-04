@@ -7,6 +7,11 @@ package studentCoursesBackup.myTree;
 * @author Aravind Venkit
 */
 public interface SubjectI{
-	// Method to notify all the observer nodes (backup nodes) to be updated.
+	/**
+	* notifyAll method.
+	* called from subject node to notifies the observer nodes.
+	* notifies the respective index in the course list.
+	* @param int clearNameIndex
+	*/
 	public void notifyAll(int clearNameIndex);
 }
