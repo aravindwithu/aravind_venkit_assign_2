@@ -201,6 +201,8 @@ public class Driver
 		    backup_results_2.writeAll(writer);
 		    // writer object is closed.
 		    writer.close();
+
+		    System.out.println("Output files generated successfully.");
 	    }
 	    catch(Exception ex){
 	    	System.err.println(ex.getMessage());// prints the error message.

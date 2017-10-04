@@ -102,11 +102,8 @@ public class TreeBuilder{
 	* @param Result backup_Results_2.
 	*/
 	public void printNodes(Results results_orig, Results backup_Results_1, Results backup_Results_2){
-		System.out.println("orig");
 		printNodes(root_orig, results_orig);
-		System.out.println("backup1");
 		printNodes(backup_Root_1, backup_Results_1);
-		System.out.println("backup2");
 		printNodes(backup_Root_2, backup_Results_2);
 	}
 
@@ -121,7 +118,7 @@ public class TreeBuilder{
 		if(currentNode != null){
 			printNodes(currentNode.getLeftChild(), result);
 			if(0 != currentNode.getBNumber() && !currentNode.isCourseNull()){
-				System.out.println(currentNode.getBNumber() + ":" + currentNode.getCourse());
+				//System.out.println(currentNode.getBNumber() + ":" + currentNode.getCourse());
 				String resultStr = currentNode.getBNumber() + ":" + currentNode.getCourse();
 				result.storeNewResult(resultStr);
 			}			
